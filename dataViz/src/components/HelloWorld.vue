@@ -1,5 +1,5 @@
 <script setup>
-import { useQuery } from "@vue/apollo-composable";
+import { useQuery, useResult } from "@vue/apollo-composable";
 import gql from "graphql-tag";
 
 const { result, loading, error } = useQuery(gql`
@@ -23,6 +23,8 @@ const { result, loading, error } = useQuery(gql`
     }
   }
 `);
+
+const messages = useResult(result, [], (data) => data.coordinates);
 
 const center = [116.54875, 40.45064];
 const projection = "EPSG:4326";
@@ -55,7 +57,7 @@ const fillColor = "white";
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature>
-          <ol-geom-multi-point :coordinates="result"></ol-geom-multi-point>
+          <ol-geom-multi-point :coordinates="messages"></ol-geom-multi-point>
           <ol-style>
             <ol-style-circle :radius="radius">
               <ol-style-fill :color="fillColor"></ol-style-fill>
