@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 const { result, loading, error } = useQuery(gql`
   query AllShips {
     # {"data":null,"errors":[{"message":"reason="could not validate document: \\n\\tdepth: Invalid type. Expected: type: undefined, bsonType: string, given: [double number float mixed]"; code="SchemaValidationFailedRead"; untrusted="read not permitted"; details=map[]","locations":[{"line":2,"column":3}],"path":["shipwrecks"]}]}
-    shipwrecks {
+    shipwreck {
       _id
       chart
       coordinates
@@ -30,7 +30,7 @@ const center = [116.54875, 40.45064];
 const projection = "EPSG:4326";
 const zoom = 17;
 const rotation = 0;
-const radius = 0;
+const radius = 10;
 const strokeWidth = 4;
 const strokeColor = "red";
 const fillColor = "white";
